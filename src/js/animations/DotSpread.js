@@ -23,6 +23,9 @@ const Dot = styled('div')`
   width: ${p => p.radius};
 `
 
+/**
+ * Animation using raw animejs and direct DOM refs
+ */
 class DotSpread extends Component {
   constructor(props) {
     super(props)
