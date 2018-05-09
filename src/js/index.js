@@ -6,6 +6,12 @@ import DotSpread from './animations/DotSpread'
 
 const Grid = styled('div')`
   display: grid;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  grid-template-columns: repeat(auto-fill, 350px);
+  grid-template-rows: repeat(auto-fill, 350px);
+  justify-content: center;
+  padding: 40px;
 `
 
 const App = ({ children }) => (
