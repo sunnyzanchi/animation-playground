@@ -23,13 +23,6 @@ const Dot = styled('div')`
   width: ${p => p.radius};
 `
 
-const dots = []
-
-for (let i = 0; i < NUM_OF_DOTS; i += 1) {
-  // placeholder
-  dots.push(0)
-}
-
 class DotSpread extends Component {
   constructor(props) {
     super(props)
@@ -71,12 +64,18 @@ class DotSpread extends Component {
   }
 
   render() {
+    const dots = []
+    for (let i = 0; i < NUM_OF_DOTS; i += 1) {
+      // placeholder
+      dots.push(
+        <Dot color={randomColor} innerRef={el => this.dotRefs.push(el)} radius={RADIUS} />
+      )
+    }
+
     return (
       <Card>
         <Container innerRef={el => (this.containerRef = el)}>
-          {dots.map((_, i) =>
-            <Dot color={randomColor} innerRef={el => this.dotRefs.push(el)} radius={RADIUS} />
-          )}
+          {dots}
         </Container>
       </Card>
     )
