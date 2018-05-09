@@ -69,7 +69,6 @@ class DotSpread extends Component {
   render() {
     const dots = []
     for (let i = 0; i < NUM_OF_DOTS; i += 1) {
-      // placeholder
       dots.push(
         <Dot color={randomColor} innerRef={el => this.dotRefs.push(el)} radius={RADIUS} />
       )
