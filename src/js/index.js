@@ -3,6 +3,7 @@ import styled from 'preact-emotion'
 import 'reset-css'
 
 import DotSpread from './animations/DotSpread'
+import Triangles from './animations/Triangles'
 
 const Grid = styled('div')`
   display: grid;
@@ -17,6 +18,7 @@ const Grid = styled('div')`
 const App = ({ children }) => (
   <Grid>
     <DotSpread />
+    <Triangles />
   </Grid>
 )
 
