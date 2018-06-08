@@ -11,6 +11,8 @@
   "license": "MIT",
   "browserslist": "last 1 Firefox version",
   "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "eslint": "^4.19.1",
     "eslint-config-gsandf-react": "^1.0.2",

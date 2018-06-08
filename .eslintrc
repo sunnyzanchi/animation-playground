@@ -1,5 +1,6 @@
 {
   "extends": "gsandf-react",
+  "parser": "babel-eslint",
   "rules": {
     "comma-dangle": ["error", "always-multiline"],
     "react/prop-types": "off",
