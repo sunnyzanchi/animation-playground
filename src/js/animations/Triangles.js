@@ -9,29 +9,34 @@ class Triangles extends Component {
   frame = 0;
   componentDidMount() {
     this.ctx = this.canvas.getContext('2d')
+    this.ctx.translate(0.5, 0.5)
     requestAnimationFrame(this.animation)
   }
 
   animation = () => {
     const { cos, sin } = Math
     const { ctx, frame } = this
-
-    const x1 = 150 + cos(frame / 60) * 50
-    const y1 = 150 + sin(frame / 60) * 50
-
-    const x2 = 150 + cos(-frame / 60) * 50
-    const y2 = 150 + sin(-frame / 60) * 50
+    const CENTER = 175
+    const NUM_SLICES = 4
 
     ctx.clearRect(0, 0, 350, 350)
-    ctx.beginPath()
-    ctx.moveTo(150, 150)
-    ctx.lineTo(x1, y1)
-    ctx.moveTo(150, 150)
-    ctx.lineTo(x2, y2)
-    ctx.moveTo(x1, y1)
-    // TODO: Figure this out 😩
-    ctx.arc(150, 150, 50, sin(frame / 60), cos(frame / 60))
-    ctx.stroke()
+
+    // TODO: Make these slices work
+    for (let i = 0; i < NUM_SLICES; i += 1) {
+      const currentFrame = frame + i * 10
+      const x1 = CENTER + cos(currentFrame / 30) * (50 - i)
+      const y1 = CENTER + sin(currentFrame / 30) * (50 - i)
+      ctx.fillStyle = `rgb(255, ${255 / NUM_SLICES * i}, ${255 / NUM_SLICES * i}`
+
+      ctx.beginPath()
+      ctx.moveTo(CENTER, CENTER)
+
+      // This makes the line out, makes the arc, then goes back to the center, so we have a full shape
+      ctx.lineTo(x1, y1)
+      ctx.arc(CENTER, CENTER, 50, currentFrame / 30, -currentFrame / 30)
+      ctx.lineTo(CENTER, CENTER)
+      ctx.fill()
+    }
 
     this.frame += 1
     requestAnimationFrame(this.animation)
