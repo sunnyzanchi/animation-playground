@@ -4,7 +4,7 @@
   "description": "A place for me to try out animation ideas",
   "main": "index.js",
   "scripts": {
-    "build": "parcel build ./src/index.html",
+    "build": "parcel build ./src/index.html --public-url /animation-playground/",
     "start": "parcel -p 3000 ./src/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
