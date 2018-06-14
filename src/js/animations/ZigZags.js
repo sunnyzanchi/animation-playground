@@ -1,6 +1,10 @@
 import { h, Component } from 'preact'
 import Card from '../global/Card'
 
+/**
+ * Animation using rAF with the Canvas API and direct DOM refs
+ */
+
 class ZigZags extends Component {
   frame = 0
 

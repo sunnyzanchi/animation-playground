@@ -26,6 +26,7 @@ const Dot = styled('div')`
 /**
  * Animation using raw animejs and direct DOM refs
  */
+
 class DotSpread extends Component {
   constructor(props) {
     super(props)
