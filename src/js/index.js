@@ -4,6 +4,7 @@ import 'reset-css'
 
 import DotSpread from './animations/DotSpread'
 import Triangles from './animations/Triangles'
+import ZigZags from './animations/ZigZags'
 
 const Grid = styled('div')`
   display: grid;
@@ -19,6 +20,7 @@ const App = ({ children }) => (
   <Grid>
     <DotSpread />
     <Triangles />
+    <ZigZags baseWidth={16} />
   </Grid>
 )
 
