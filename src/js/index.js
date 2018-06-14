@@ -19,7 +19,7 @@ const Grid = styled('div')`
 const App = ({ children }) => (
   <Grid>
     <DotSpread />
-    <Triangles />
+    {/* Work in Progress <Triangles /> */}
     <ZigZags baseWidth={16} />
   </Grid>
 )
