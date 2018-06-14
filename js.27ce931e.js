@@ -79,4 +79,4 @@ var r;!function(e,n){if("object"==typeof exports){var t=n();"object"==typeof mod
   padding: 40px;
 `,p=({children:t})=>(0,e.h)(s,null,(0,e.h)(d.default,null),(0,e.h)(u.default,null),(0,e.h)(n.default,{baseWidth:16}));(0,e.render)((0,e.h)(p,null),document.body),module.hot&&module.hot.dispose(()=>{for(;document.body.firstChild;)document.body.removeChild(document.body.firstChild)});
 },{"preact":12,"preact-emotion":13,"reset-css":14,"./animations/DotSpread":6,"./animations/Triangles":7,"./animations/ZigZags":8}]},{},[4], null)
-//# sourceMappingURL=/js.8410275b.map
+//# sourceMappingURL=/animation-playground/js.8410275b.map
