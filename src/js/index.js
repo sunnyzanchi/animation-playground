@@ -1,20 +1,20 @@
 import { h, render } from 'preact'
-import styled from 'preact-emotion'
+import styled from 'styled'
 import 'reset-css'
 
 import DotSpread from './animations/DotSpread'
-import Triangles from './animations/Triangles'
+// import Triangles from './animations/Triangles'
 import ZigZags from './animations/ZigZags'
 
-const Grid = styled('div')`
-  display: grid;
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
-  grid-template-columns: repeat(auto-fit, 350px);
-  grid-template-rows: repeat(auto-fit, 350px);
-  justify-content: center;
-  padding: 40px;
-`
+const Grid = styled('div')({
+  display: 'grid',
+  gridColumnGap: '20px',
+  gridRowGap: '20px',
+  gridTemplateColumns: 'repeat(auto-fit, 350px)',
+  gridTemplateRows: 'repeat(auto-fit, 350px)',
+  justifyContent: 'center',
+  padding: '40px',
+})
 
 const App = ({ children }) => (
   <Grid>
