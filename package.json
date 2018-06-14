@@ -5,12 +5,16 @@
   "main": "index.js",
   "scripts": {
     "build": "parcel build ./src/index.html --public-url /animation-playground/",
+    "lint": "eslint src/js",
     "start": "parcel -p 3000 ./src/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Zanchi <emzanchi@gmail.com> (https://github.com/zanchi)",
   "license": "MIT",
   "browserslist": "last 1 Firefox version",
+  "alias": {
+    "styled": "./src/js/styled.js"
+  },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -21,9 +25,8 @@
   },
   "dependencies": {
     "animejs": "^2.2.0",
-    "emotion": "^9.1.3",
+    "picostyle": "^2.0.1",
     "preact": "^8.2.9",
-    "preact-emotion": "^9.1.3",
     "randomcolor": "^0.5.3",
     "reset-css": "^3.0.0"
   }

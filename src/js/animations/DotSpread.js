@@ -1,5 +1,5 @@
 import { h, Component } from 'preact'
-import styled from 'preact-emotion'
+import styled from 'styled'
 import anime from 'animejs'
 import randomColor from 'randomcolor'
 import Card from '../global/Card'
@@ -7,21 +7,22 @@ import Card from '../global/Card'
 const NUM_OF_DOTS = 12
 const RADIUS = '24px'
 
-const Container = styled('div')`
-  align-items: center;
-  display: flex;
-  height: 100%;
-  justify-content: center;
-  width: 100%;
-`
+const Container = styled('div')({
+  alignItems: 'center',
+  display: 'flex',
+  height: '100%',
+  justifyContent: 'center',
+  width: '100%',
+})
 
-const Dot = styled('div')`
-  background-color: ${p => p.color};
-  border-radius: 50%;
-  height: ${p => p.radius};
-  position: absolute;
-  width: ${p => p.radius};
-`
+// We do this so we can pass a component that has a ref on it
+const makeDot = dotComp => styled(dotComp)(p => ({
+  backgroundColor: p.color,
+  borderRadius: '50%',
+  height: p.radius,
+  position: 'absolute',
+  width: p.radius,
+}))
 
 /**
  * Animation using raw animejs and direct DOM refs
@@ -70,8 +71,10 @@ class DotSpread extends Component {
   render() {
     const dots = []
     for (let i = 0; i < NUM_OF_DOTS; i += 1) {
+      const Dot = makeDot(<div ref={el => this.dotRefs.push(el)} />)
+
       dots.push(
-        <Dot color={randomColor} innerRef={el => this.dotRefs.push(el)} radius={RADIUS} />
+        <Dot color={randomColor()} radius={RADIUS} />
       )
     }
 
