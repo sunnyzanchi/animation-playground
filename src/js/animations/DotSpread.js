@@ -7,7 +7,7 @@ import Card from '../global/Card'
 const NUM_OF_DOTS = 12
 const RADIUS = '24px'
 
-const Container = styled('div')({
+const makeContainer = containerComp => styled(containerComp)({
   alignItems: 'center',
   display: 'flex',
   height: '100%',
@@ -70,8 +70,14 @@ class DotSpread extends Component {
 
   render() {
     const dots = []
+    const containerBase = props =>
+      <div class={props.class} ref={el => (this.containerRef = el)}>{props.children}</div>
+    const Container = makeContainer(containerBase)
+
     for (let i = 0; i < NUM_OF_DOTS; i += 1) {
-      const Dot = makeDot(<div ref={el => this.dotRefs.push(el)} />)
+      const dotBase = props =>
+        <div class={props.class} ref={el => this.dotRefs.push(el)} />
+      const Dot = makeDot(dotBase)
 
       dots.push(
         <Dot color={randomColor()} radius={RADIUS} />

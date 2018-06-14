@@ -3,6 +3,7 @@
   "parser": "babel-eslint",
   "rules": {
     "comma-dangle": ["error", "always-multiline"],
+    "react/no-unknown-property": "off",
     "react/prop-types": "off",
     "semi": ["error", "never"]
   },
