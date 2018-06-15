@@ -10,6 +10,13 @@ const HoverText = styled('p')({
 })
 
 const Wrapper = styled('a')(p => ({
+  '& svg': {
+    // I had to use + here because ESLint was being a dick and erroring out when I used
+    // template strings
+    height: p.radius + 'px',
+    transition: '.16s fill',
+    width: p.radius + 'px',
+  },
   ':hover': {
     color: '#777',
     cursor: 'pointer',
