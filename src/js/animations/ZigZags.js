@@ -1,80 +1,67 @@
-import { h, Component } from 'preact'
+import { h } from 'preact'
+import CanvasAnimation from '../global/CanvasAnimation'
 import Card from '../global/Card'
 
 /**
  * Animation using rAF with the Canvas API and direct DOM refs
  */
 
-class ZigZags extends Component {
-  frame = 0
-
-  componentDidMount() {
-    this.ctx = this.canvas.getContext('2d')
-    this.height = this.canvas.height
-    this.width = this.canvas.width
-
-    this.ctx.translate(0.5, 0.5)
-    requestAnimationFrame(this.animation)
+const ZigZags = ({ baseWidth }) => {
+  const animation = info => {
+    drawZigZags(info, info.frame)
+    drawZigZagsVert(info, info.frame)
   }
 
-  animation = () => {
-    this.ctx.clearRect(0, 0, this.width, this.height)
-    this.drawZigZags(this.frame)
-    this.drawZigZagsVert(this.frame)
+  const drawLine = (info, x1, y1) => {
+    const { ctx, height } = info
+    const x2 = x1 + baseWidth
+    const y2 = y1 + baseWidth
 
-    this.frame += 1
-    requestAnimationFrame(this.animation)
+    ctx.lineTo(x1, y2)
+    ctx.lineTo(x2, y2)
+
+    if (y2 > height) return
+    drawLine(info, x2, y2)
   }
 
-  drawLine = (x1, y1) => {
-    const x2 = x1 + this.props.baseWidth
-    const y2 = y1 + this.props.baseWidth
-
-    this.ctx.lineTo(x1, y2)
-    this.ctx.lineTo(x2, y2)
-
-    if (y2 > this.height) return
-    this.drawLine(x2, y2)
-  }
-
-  drawZigZags = (frame, x1 = 0) => {
-    const x2 = x1 + this.props.baseWidth * 2
+  const drawZigZags = (info, frame, x1 = 0) => {
+    const { ctx, width } = info
+    const x2 = x1 + baseWidth * 2
 
     // If lineWidth is set <= 0, it just sets to 1, but we want essentially a non-existent line
-    this.ctx.lineWidth = Math.max(7 * Math.sin(frame / 20) + 7, 0.0001)
-    this.ctx.strokeStyle = `hsl(${frame / 5}, 90%, 70%)`
+    ctx.lineWidth = Math.max(7 * Math.sin(frame / 20) + 7, 0.0001)
+    ctx.strokeStyle = `hsl(${frame / 5}, 90%, 70%)`
 
-    this.ctx.beginPath()
-    this.ctx.moveTo(x1, 0)
-    this.drawLine(x1, 0)
-    this.ctx.stroke()
+    ctx.beginPath()
+    ctx.moveTo(x1, 0)
+    drawLine(info, x1, 0)
+    ctx.stroke()
 
-    if (x2 > this.width) return
-    this.drawZigZags(frame + 6, x2)
+    if (x2 > width) return
+    drawZigZags(info, frame + 6, x2)
   }
 
   // Can probably abstract this more better
-  drawZigZagsVert = (frame, y1 = 0) => {
-    const y2 = y1 + this.props.baseWidth * 2
-    this.ctx.strokeStyle = `hsl(${frame / 5}, 90%, 70%)`
+  const drawZigZagsVert = (info, frame, y1 = 0) => {
+    const { ctx, height } = info
+    const y2 = y1 + baseWidth * 2
+    ctx.strokeStyle = `hsl(${frame / 5}, 90%, 70%)`
 
-    this.ctx.lineWidth = Math.max(7 * Math.sin(frame / 20) + 7, 0.0001)
-    this.ctx.beginPath()
-    this.ctx.moveTo(0, y1)
-    this.drawLine(0, y1)
-    this.ctx.stroke()
+    ctx.lineWidth = Math.max(7 * Math.sin(frame / 20) + 7, 0.0001)
+    ctx.beginPath()
+    ctx.moveTo(0, y1)
+    drawLine(info, 0, y1)
+    ctx.stroke()
 
-    if (y2 > this.height) return
-    this.drawZigZagsVert(frame - 6, y2)
+    if (y2 > height) return
+    drawZigZagsVert(info, frame - 6, y2)
   }
 
-  render() {
-    return (
-      <Card>
-        <canvas height={350} ref={el => (this.canvas = el)} width={350} />
-      </Card>
-    )
-  }
+  return (
+    <Card>
+      <CanvasAnimation animation={animation} />
+    </Card>
+  )
 }
 
 export default ZigZags
