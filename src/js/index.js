@@ -3,6 +3,7 @@ import styled from 'styled'
 import 'reset-css'
 
 import DotSpread from './animations/DotSpread'
+import Drop from './animations/Drop'
 import SidebarLink from './global/SidebarLink'
 // import Triangles from './animations/Triangles'
 import ZigZags from './animations/ZigZags'
@@ -45,6 +46,7 @@ const App = ({ children }) => (
   <Container>
     <Grid>
       <DotSpread />
+      <Drop />
       {/* Work in Progress <Triangles /> */}
       <ZigZags baseWidth={16} />
     </Grid>
