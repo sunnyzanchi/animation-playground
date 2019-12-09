@@ -28,6 +28,7 @@
     "picostyle": "^2.0.1",
     "preact": "^8.2.9",
     "randomcolor": "^0.5.3",
-    "reset-css": "^3.0.0"
+    "reset-css": "^3.0.0",
+    "rounded-rect": "0.0.1"
   }
 }
